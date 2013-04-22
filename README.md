@@ -5,10 +5,10 @@ Perl interface to Huawei E3131 3G HSPA+ USB Modem to send and receive sms. (code
 
 
 Functions of perl module :
-	- telephonySmsList
-	- telephonySmsDelete
-	- telephonySmsSend 
-  	- telephonySmsClean
+* telephonySmsList
+* telephonySmsDelete
+* telephonySmsSend 
+* telephonySmsClean
 
 
 Example of script to send a sms :
