@@ -17,7 +17,7 @@ Example of script to send a sms :
 use SMS;
 
 my $fnret = SMS::telephonySmsSend({ to => '06123456789' , message => 'This is a test' });
-if($fnret)
+if($fnret->{'status'} eq '100')
 {
 	print 'Sms sent !';
 }
