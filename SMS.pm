@@ -131,6 +131,11 @@ sub telephonySmsSend {
 # Remove all sms from the dongle memory
 #
 sub telephonySmsClean {
+    my $resultmsg    = '';
+    my $resultstatus = '100';
+
+    my $Result = { status => $resultstatus, message => $resultmsg };
+
     my $req = '
 		<?xml version="1.0" encoding="UTF-8"?>
 			<request>
@@ -154,9 +159,16 @@ sub telephonySmsClean {
     my $xml = XML::Simple::XMLin( $fnret->{'value'}, ForceArray => 1 );
 
     my $Messages = $xml->{'Messages'}[0]->{'Message'};
+
     foreach my $Sms ( @{$Messages} ) {
         my $fnret = telephonySmsDelete( { index => $Sms->{'Index'}[0] } );
+
+        if ( $fnret->{'status'} ne '100' ) {
+            return $fnret;
+        }
     }
+
+    return $Result;
 }
 
 #
