@@ -9,7 +9,6 @@ use HTTP::Headers;
 use Getopt::Long;
 use Data::Dumper;
 use XML::Simple;
-use DBI;
 
 package SMS;
 
@@ -87,7 +86,7 @@ sub telephonySmsSend {
     my $Result = { status => $resultstatus, message => $resultmsg };
 
     # Test number (allow only mobile numbers in France)
-    if ( $To !~ /^(0033|0){1}[67]{1}\d{8}$/ ) {
+    if ( $To !~ /^(0033|\+33|0){1}[67]{1}\d{8}$/ ) {
         $Result->{'status'} = "201";
         $Result->{'message'} =
           'Destination number must be a mobile phone in France !';
